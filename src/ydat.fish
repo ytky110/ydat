@@ -1,5 +1,6 @@
 #!/usr/bin/env fish
 
+set -g version 1.1
 set -g str "+%Y%m%d-%HH"
 
 function _help
@@ -31,6 +32,11 @@ function _help
     exit 0
 end
 
+function _version
+    echo $version
+    exit 0
+end
+
 function _opt
     for c in (string split -- '' (string sub -s 2 -- $argv[1]))
         switch $c
@@ -48,8 +54,10 @@ function _opt
             set -g str (string replace -- '%Y' '%y' $str)
         case h
             _help
+        case v
+            _version
         case '*'
-            echo "ydate: Unknown option: $i" >&2
+            echo "ydate: Unknown option: $c" >&2
             exit 2
         end
     end
@@ -59,6 +67,8 @@ for arg in $argv
     switch $arg
     case --help
         _help
+    case --version
+        _version
     case '-*'
         _opt $arg
     case '*'
