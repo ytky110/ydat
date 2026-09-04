@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set -g version 1.1
+set -g ydat_version 1.2
 set -g str "+%Y%m%d-%HH"
 
 function _help
@@ -33,7 +33,7 @@ function _help
 end
 
 function _version
-    echo $version
+    echo $ydat_version
     exit 0
 end
 
